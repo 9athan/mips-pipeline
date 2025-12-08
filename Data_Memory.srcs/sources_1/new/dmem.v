@@ -1,6 +1,4 @@
 `timescale 1ns / 1ps
-// dmem.v  --  Data Memory (256 x 32)
-// Word-addressed using address[9:2]
 
 module D_MEM (
     input         clk,
@@ -13,18 +11,16 @@ module D_MEM (
 
     reg [31:0] MEM [0:255];
 
-    // Initialize from data.mem (Lab 6 / assignment)
+
     initial begin
         $readmemb("data.mem", MEM);
     end
 
-    // synchronous write
     always @(posedge clk) begin
         if (MemWrite)
             MEM[Address[9:2]] <= WriteData;
     end
 
-    // asynchronous read (gated by MemRead)
     assign ReadData = MemRead ? MEM[Address[9:2]] : 32'b0;
 
 endmodule
