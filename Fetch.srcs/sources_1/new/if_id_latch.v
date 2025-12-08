@@ -1,8 +1,7 @@
-// IF/ID latch: captures npc (PC+4) and instruction
 module ifIdLatch (
     input  wire        clk,
-    input  wire        rst,         // synchronous clear
-    input  wire [31:0] pc_in,       // usually PC+4
+    input  wire        rst,         // clear
+    input  wire [31:0] pc_in,       // PC+4
     input  wire [31:0] instr_in,
     output reg  [31:0] pc_out,
     output reg  [31:0] instr_out
@@ -17,3 +16,4 @@ module ifIdLatch (
         end
     end
 endmodule
+
