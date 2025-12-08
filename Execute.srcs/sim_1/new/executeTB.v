@@ -1,4 +1,4 @@
-//executeTB.v
+
 
 module executeTB;
     reg clk;
@@ -41,7 +41,7 @@ module executeTB;
     end
 
     initial begin
-        // Initialize inputs
+
         ctlwb_in = 2'b10; ctlm_in = 2'b01;
         npc = 32'd100; rdata1 = 32'd10; rdata2 = 32'd20; s_extend = 32'd4;
         instr_2016 = 5'd5; instr_1511 = 5'd10;
@@ -50,7 +50,7 @@ module executeTB;
 
         #15;
 
-        // Modify inputs to test different scenarios
+    
         alusrc = 0; regdst = 0;
         s_extend = 32'd8;
         alu_op = 2'b01; funct = 6'b100010;
