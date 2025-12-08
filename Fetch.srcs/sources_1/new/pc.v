@@ -1,7 +1,7 @@
-// PC: on each rising clock, forwards pc_in to pc_out
+
 module pc (
     input  wire        clk,
-    input  wire        rst,       // synchronous reset
+    input  wire        rst,       
     input  wire [31:0] pc_in,
     output reg  [31:0] pc_out
 );
