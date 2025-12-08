@@ -24,7 +24,7 @@ module tb_decode;
     wire [4:0]  id_ex_instr_bits_20_16;
     wire [4:0]  id_ex_instr_bits_15_11;
 
-    // -------- DUT instance ----------
+
     decode dut(
         .clk                     (clk),
         .rst                     (rst),
@@ -69,7 +69,7 @@ module tb_decode;
         #10;                  
         wb_reg_write          = 0;
 
-        // write 0xBBBB_BBBB to $5
+   
         wb_write_reg_location = 5'd5;
         mem_wb_write_data     = 32'hBBBB_BBBB;
         wb_reg_write          = 1;
@@ -92,7 +92,7 @@ module tb_decode;
         if_id_npc   = 32'h0040_0010;
         #10;
 
-        // Done
+ 
         #20;
         $stop;
     end
