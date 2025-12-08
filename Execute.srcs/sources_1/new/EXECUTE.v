@@ -1,24 +1,21 @@
 `timescale 1ns / 1ps
-/*
-Execute Stage: This uses the outputs of Fetch and Decode Stages as well as combining the modules: adder, bottom_mux(5-bit), alu_control, alu, top_mux (32-bit),
-and ex_mem.
-*/
+
 module EXECUTE(
-input wire [1:0] wb_ctl,  //11 inputs, based off of outputs of ID/EX latch (Lab 2-2)
+input wire [1:0] wb_ctl,
 input wire [2:0] m_ctl,
 input wire regdst, alusrc,
 input wire [1:0] aluop, 
 input wire [31:0] npcout, rdata1, rdata2, s_extendout,
 input wire [4:0] instrout_2016, instrout_1511,
-output wire [1:0] wb_ctlout, //9 total outputs from EX/MEM latch
+output wire [1:0] wb_ctlout,
 output wire branch, memread, memwrite,
 output wire [31:0] EX_MEM_NPC,
 output wire zero,
 output wire [31:0] alu_result, rdata2out,
 output wire [4:0] five_bit_muxout
 );
-// signals
-wire [31:0] adder_out, b, aluout;//internal wires to connect internal EXECUTE components together
+
+wire [31:0] adder_out, b, aluout;
 wire [4:0] muxout;
 wire [2:0] control;
 wire aluzero;
@@ -28,7 +25,7 @@ adder adder3(
 .add_out(adder_out)
 );
 bottom_mux bottom_mux3(
-.a(instrout_1511),  //in case of error, check this
+.a(instrout_1511),  
 .b(instrout_2016),
 .sel(regdst),  
 .y(muxout)
@@ -40,26 +37,26 @@ alu_control alu_control3(
 );
 alu alu3(
 .a(rdata1),
-.b(b), // b <= output of top_mux
+.b(b), 
 .control(control),
 .result(aluout),
 .zero(aluzero)
 );
 top_mux top_mux3(
-.y(b), // output of mux is 32 bit "b" wire
+.y(b), 
 .a(s_extendout), 
-.b(rdata2), // input a = 1'b1, b = 1'b0
+.b(rdata2),
 .alusrc(alusrc)
 );
 ex_mem ex_mem3(
-.ctlwb_out(wb_ctl), // inputs, which should stem from intermediate modules 
+.ctlwb_out(wb_ctl), 
 .ctlm_out(m_ctl),
 .adder_out(adder_out),
 .aluzero(aluzero),
 .aluout(aluout), 
 .readdat2(rdata2),
 .muxout(muxout), 
-.wb_ctlout(wb_ctlout), // outputs going to FETCH or MEM/WB
+.wb_ctlout(wb_ctlout), 
 .branch(branch), 
 .memread(memread), 
 .memwrite(memwrite), 
@@ -70,4 +67,5 @@ ex_mem ex_mem3(
 .five_bit_muxout(five_bit_muxout)
 );
     
-endmodule // IEXECUTE
+
+endmodule 
