@@ -4,19 +4,15 @@ module instrMem (
     input  wire [31:0] addr,
     output reg  [31:0] data
 );
-    // Declare memory
+
     reg [31:0] mem [0:1023];
 
-    // Declare loop variable here (outside any block)
     integer i;
 
-    // Initialize memory contents
     initial begin
-        // Zero out memory
         for (i = 0; i < 1024; i = i + 1)
             mem[i] = 32'h0000_0000;
 
-        // Initialize first 10 words
         mem[0] = 32'hA00000AA;
         mem[1] = 32'h10000011;
         mem[2] = 32'h20000022;
@@ -29,8 +25,8 @@ module instrMem (
         mem[9] = 32'h90000099;
     end
 
-    // Synchronous read
     always @(*) begin
         data = mem[addr[31:2]];
     end
 endmodule
+
