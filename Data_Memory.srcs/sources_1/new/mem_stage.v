@@ -1,5 +1,4 @@
 `timescale 1ns / 1ps
-// mem_stage.v  --  MEM pipeline stage (Lab 4) for memoryTB
 
 module mem_stage (
     input         clk,
@@ -19,17 +18,14 @@ module mem_stage (
     output        PCSrc
 );
 
-    // output of data memory (before MEM/WB latch)
     wire [31:0] mem_read_data;
 
-    // PCSrc = Branch & Zero
     BRANCH_AND u_and (
         .Branch(Branch),
         .Zero(Zero),
         .PCSrc(PCSrc)
     );
 
-    // Data memory
     D_MEM u_dmem (
         .clk       (clk),
         .MemWrite  (MemWrite),
@@ -39,7 +35,6 @@ module mem_stage (
         .ReadData  (mem_read_data)
     );
 
-    // MEM/WB pipeline latch
     MEM_WB u_memwb (
         .clk          (clk),
         .WBControl_in (WBControl),
