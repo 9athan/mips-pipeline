@@ -1,5 +1,3 @@
-//memoryTB.v
-
 module memoryTB();
     reg clk;
     reg [31:0] ALUResult, WriteData;
@@ -33,7 +31,7 @@ module memoryTB();
     end
 
     initial begin
-     // Mem Read
+
     ALUResult = 32'h00000004;
     WriteData = 32'h12345678;
     WriteReg = 5'h02;
@@ -45,18 +43,17 @@ module memoryTB();
 
     #10; 
 
-    // Mem Write
+
     MemWrite = 1;
     MemRead = 0;
-    #10; // Allow write to occur
+    #10; 
     MemWrite = 0;
     MemRead = 1;
-    #10; // Verify write by reading back
+    #10; 
 
-    // Branch
     Branch = 1;
     Zero = 1;
-    #10; // Check PCSrc
+    #10; 
 
     $finish;
 end
