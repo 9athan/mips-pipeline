@@ -22,15 +22,14 @@ module writebackTB;
     );
 
     initial begin
-        // Test ALUResult path (MemToReg = 0)
-        wb_ctrl    = 2'b10;           // RegWrite=1, MemToReg=0
+
+        wb_ctrl    = 2'b10;           
         read_data  = 32'hAAAA_BBBB;
         alu_result = 32'h1111_2222;
         write_reg  = 5'd8;
         #10;
 
-        // Test ReadData path (MemToReg = 1)
-        wb_ctrl    = 2'b11;           // RegWrite=1, MemToReg=1
+        wb_ctrl    = 2'b11;          
         read_data  = 32'hDEAD_BEEF;
         alu_result = 32'h3333_4444;
         write_reg  = 5'd9;
