@@ -1,9 +1,7 @@
 `timescale 1ns / 1ps
-// mem_wb.v  --  MEM/WB pipeline register
-
 module MEM_WB (
     input         clk,
-    input  [1:0]  WBControl_in,     // {RegWrite, MemToReg}
+    input  [1:0]  WBControl_in,    
     input  [31:0] ReadData_in,
     input  [31:0] ALUResult_in,
     input  [4:0]  WriteReg_in,
