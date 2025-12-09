@@ -24,13 +24,13 @@ module writebackTB;
     initial begin
 
         wb_ctrl    = 2'b10;           
-        read_data  = 32'hAAAA_BBBB;
+        read_data = {8'h4E, 8'h41, 8'h54, 8'h45}; //Nate ascii
         alu_result = 32'h1111_2222;
         write_reg  = 5'd8;
         #10;
 
         wb_ctrl    = 2'b11;          
-        read_data  = 32'hDEAD_BEEF;
+        read_data = {8'h4D, 8'h49, 8'h4E, 8'h48}; //Minh ascii
         alu_result = 32'h3333_4444;
         write_reg  = 5'd9;
         #10;
